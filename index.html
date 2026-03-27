@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JordanVPN | Быстрый и безопасный VPN</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        /* Градиентные акценты */
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .gradient-border {
+            border-image: linear-gradient(135deg, #ffffff, #444444) 1;
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Шапка */
+        .header {
+            padding: 32px 0;
+            border-bottom: 1px solid #222;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: #ffffff;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #fff;
+        }
+        
+        /* Герой секция */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .btn-primary:hover {
+            background: #dddddd;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            background: transparent;
+        }
+        
+        .btn-outline:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Карточки */
+        .features {
+            padding: 80px 0;
+            border-top: 1px solid #222;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: #0a0a0a;
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #222;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        /* Тарифы */
+        .pricing {
+            padding: 80px 0;
+            background: #030303;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: #0a0a0a;
+            padding: 32px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #222;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
+        
+        .pricing-price {
+            font-size: 36px;
+            font-weight: 800;
+            margin: 20px 0;
+        }
+        
+        .pricing-price small {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Инструкция */
+        .howto {
+            padding: 80px 0;
+            border-top: 1px solid #222;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            border: 1px solid #333;
+        }
+        
+        /* Подвал */
+        .footer {
+            padding: 48px 0;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Адаптив */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <div class="logo">JORDAN<span class="gradient-text">VPN</span></div>
+                <div class="nav-links">
+                    <a href="#features">Преимущества</a>
+                    <a href="#pricing">Тарифы</a>
+                    <a href="#howto">Как подключиться</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero">
+            <h1>Быстрый и <span class="gradient-text">безопасный</span> VPN</h1>
+            <p>Сервер в Германии. Высокая скорость. Обход любых блокировок.</p>
+            <div class="btn-group">
+                <a href="https://t.me/jordanteamvpnbot" class="btn btn-primary" target="_blank">🚀 Получить VPN</a>
+                <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">🎁 Пробный период 3 дня</a>
+            </div>
+        </div>
+        
+        <div class="features" id="features">
+            <h2 class="section-title">Почему мы?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Максимальная скорость</h3>
+                    <p>Оптимизированные серверы в Европе для быстрого интернета</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Надёжная защита</h3>
+                    <p>Современные протоколы шифрования для полной конфиденциальности</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Обход блокировок</h3>
+                    <p>Работает там, где другие не проходят</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Все устройства</h3>
+                    <p>Windows, macOS, Android, iOS — всё поддерживается</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pricing" id="pricing">
+            <h2 class="section-title">💰 Тарифы</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>14 дней</h3>
+                    <div class="pricing-price">60 ₽ <small>/ 40⭐</small></div>
+                    <ul class="pricing-features">
+                        <li>📊 100 ГБ трафика</li>
+                        <li>⚡ Максимальная скорость</li>
+                        <li>🔒 Защита 24/7</li>
+                        <li>📱 Все устройства</li>
+                    </ul>
+                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Выбрать</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>30 дней</h3>
+                    <div class="pricing-price">120 ₽ <small>/ 80⭐</small></div>
+                    <ul class="pricing-features">
+                        <li>📊 300 ГБ трафика</li>
+                        <li>⚡ Максимальная скорость</li>
+                        <li>🔒 Защита 24/7</li>
+                        <li>📱 Все устройства</li>
+                    </ul>
+                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Выбрать</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>90 дней</h3>
+                    <div class="pricing-price">300 ₽ <small>/ 200⭐</small></div>
+                    <ul class="pricing-features">
+                        <li>📊 900 ГБ трафика</li>
+                        <li>⚡ Максимальная скорость</li>
+                        <li>🔒 Защита 24/7</li>
+                        <li>📱 Все устройства</li>
+                    </ul>
+                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Выбрать</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="howto" id="howto">
+            <h2 class="section-title">📱 Как подключиться</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Скачайте Happ</h3>
+                    <p>Приложение для всех устройств</p>
+                    <a href="https://www.happ.su/main/ru" style="color: #fff;" target="_blank">happ.su →</a>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Напишите /start</h3>
+                    <p>Боту @jordanteamvpnbot</p>
+                    <a href="https://t.me/jordanteamvpnbot" style="color: #fff;" target="_blank">@jordanteamvpnbot →</a>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Получите ссылку</h3>
+                    <p>Выберите тариф или пробный период</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Вставьте в Happ</h3>
+                    <p>Импорт из буфера обмена → Включить</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🇩🇪 Сервер в Германии | 🚀 Пробный период 3 дня</p>
+            <p style="margin-top: 16px;">🆘 Поддержка: <a href="https://t.me/moderator_ms" style="color: #fff;">@moderator_ms</a></p>
+            <p style="margin-top: 24px;">© 2025 JordanVPN</p>
+        </div>
+    </div>
+</body>
+</html>
