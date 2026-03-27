@@ -3,102 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JordanVPN | Пробный VPN</title>
+    <title>JordanVPN | Премиум VPN сервис</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui; background: #000; color: #fff; line-height: 1.5; padding: 20px; }
-        .container { max-width: 500px; margin: 50px auto; background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 40px; text-align: center; }
-        h1 { font-size: 28px; margin-bottom: 8px; }
-        .sub { color: #666; margin-bottom: 32px; }
-        input { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; margin-bottom: 16px; }
-        button { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 16px; }
-        .result { margin-top: 20px; padding: 16px; border-radius: 16px; display: none; }
-        .success { background: rgba(46,204,113,0.1); border: 1px solid #2ecc71; display: block; }
-        .error { background: rgba(231,76,60,0.1); border: 1px solid #e74c3c; display: block; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; line-height: 1.5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 20px; }
+        .logo { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #fff, #aaa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav a { color: #888; text-decoration: none; margin-left: 24px; cursor: pointer; transition: color 0.3s; }
+        .nav a:hover { color: #fff; }
+        .hero { text-align: center; padding: 80px 0; }
+        .hero h1 { font-size: 56px; font-weight: 700; margin-bottom: 24px; }
+        .hero h1 span { background: linear-gradient(135deg, #fff, #888); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero p { font-size: 20px; color: #888; margin-bottom: 40px; }
+        .btn { background: #fff; color: #000; padding: 14px 32px; border-radius: 40px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; cursor: pointer; border: none; font-size: 16px; }
+        .btn:hover { background: #ddd; transform: translateY(-2px); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1000px; margin: 60px auto; }
+        .pricing-card { background: #111; border: 1px solid #222; border-radius: 24px; padding: 32px; text-align: center; transition: 0.3s; }
+        .pricing-card:hover { transform: translateY(-8px); border-color: #444; }
+        .price { font-size: 36px; font-weight: 700; margin: 20px 0; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 60px 0; }
+        .feature { text-align: center; padding: 24px; background: rgba(255,255,255,0.02); border-radius: 24px; }
+        .feature-icon { font-size: 48px; margin-bottom: 16px; }
+        .profile-container { max-width: 800px; margin: 40px auto; }
+        .profile-header { background: #111; border: 1px solid #222; border-radius: 32px; padding: 32px; margin-bottom: 32px; }
+        .profile-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+        .stat-card { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 16px; text-align: center; }
+        .subscriptions { background: rgba(255,255,255,0.02); border-radius: 24px; padding: 24px; margin-top: 24px; }
+        .subscription-item { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; gap: 12px; }
+        .form-container { max-width: 450px; margin: 60px auto; }
+        .form-card { background: #111; border: 1px solid #222; border-radius: 32px; padding: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group input { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; }
+        .btn-submit { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; }
+        .alert { padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; }
+        .alert-success { background: rgba(46,204,113,0.1); border: 1px solid #2ecc71; color: #2ecc71; }
+        .alert-error { background: rgba(231,76,60,0.1); border: 1px solid #e74c3c; color: #e74c3c; }
         .link-code { background: #1a1a1a; padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; margin: 16px 0; font-size: 12px; }
-        .footer { margin-top: 24px; font-size: 12px; color: #666; }
-        a { color: #fff; }
-        .loading { display: none; margin: 16px 0; color: #888; }
+        .hidden { display: none; }
+        .footer { text-align: center; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; color: #666; }
+        @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } .features-grid { grid-template-columns: 1fr 1fr; } .hero h1 { font-size: 36px; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🇩🇪 JordanVPN</h1>
-        <div class="sub">Быстрый VPN в Германии. Пробный период 3 дня.</div>
-        
-        <input type="text" id="telegramId" placeholder="Ваш Telegram ID (цифры)">
-        <button onclick="getTrial()">Получить VPN</button>
-        
-        <div id="loading" class="loading">🔄 Создаю VPN...</div>
-        <div id="result" class="result"></div>
-        
+        <div class="header">
+            <div class="logo">🇩🇪 JordanVPN</div>
+            <div class="nav">
+                <a onclick="showPage('home')">Главная</a>
+                <a onclick="showPage('pricing')">Тарифы</a>
+                <a id="navProfile" onclick="showPage('profile')" style="display:none">Профиль</a>
+                <a id="navLogin" onclick="showPage('login')">Вход</a>
+                <a id="navRegister" onclick="showPage('register')">Регистрация</a>
+                <a id="navLogout" onclick="logout()" style="display:none">Выйти</a>
+            </div>
+        </div>
+
+        <div id="homePage">
+            <div class="hero">
+                <h1>Быстрый и <span>безопасный</span> VPN</h1>
+                <p>Сервер в Германии. Высокая скорость. Обход любых блокировок.</p>
+                <button class="btn" onclick="showPage('register')">🎁 Пробный период 3 дня</button>
+            </div>
+            <div class="features-grid">
+                <div class="feature"><div class="feature-icon">⚡</div><h3>Максимальная скорость</h3></div>
+                <div class="feature"><div class="feature-icon">🔒</div><h3>Надёжная защита</h3></div>
+                <div class="feature"><div class="feature-icon">🌍</div><h3>Обход блокировок</h3></div>
+                <div class="feature"><div class="feature-icon">📱</div><h3>Все устройства</h3></div>
+            </div>
+        </div>
+
+        <div id="pricingPage" class="hidden">
+            <div class="pricing-grid">
+                <div class="pricing-card"><h3>14 дней</h3><div class="price">86 ₽</div><button class="btn" onclick="buyPlan(14)">Выбрать</button></div>
+                <div class="pricing-card"><h3>30 дней</h3><div class="price">173 ₽</div><button class="btn" onclick="buyPlan(30)">Выбрать</button></div>
+                <div class="pricing-card"><h3>90 дней</h3><div class="price">432 ₽</div><button class="btn" onclick="buyPlan(90)">Выбрать</button></div>
+            </div>
+        </div>
+
+        <div id="loginPage" class="hidden">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2 style="margin-bottom:24px">🔐 Вход</h2>
+                    <div id="loginAlert" class="alert hidden"></div>
+                    <div class="form-group"><input type="text" id="loginUsername" placeholder="Имя пользователя"></div>
+                    <div class="form-group"><input type="password" id="loginPassword" placeholder="Пароль"></div>
+                    <button class="btn-submit" onclick="login()">Войти</button>
+                    <div style="text-align:center; margin-top:20px">Нет аккаунта? <a onclick="showPage('register')" style="cursor:pointer">Регистрация</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="registerPage" class="hidden">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2 style="margin-bottom:24px">📝 Регистрация</h2>
+                    <div id="registerAlert" class="alert hidden"></div>
+                    <div class="form-group"><input type="text" id="regUsername" placeholder="Имя пользователя"></div>
+                    <div class="form-group"><input type="password" id="regPassword" placeholder="Пароль"></div>
+                    <div class="form-group"><input type="text" id="regTelegram" placeholder="Telegram ID (цифры)"></div>
+                    <button class="btn-submit" onclick="register()">Зарегистрироваться</button>
+                    <div style="text-align:center; margin-top:20px">Уже есть аккаунт? <a onclick="showPage('login')" style="cursor:pointer">Войти</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="profilePage" class="hidden">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h2 id="profileUsername"></h2>
+                    <div class="profile-stats">
+                        <div class="stat-card"><div id="profileBalance" class="stat-value">0</div><div>Баланс</div></div>
+                        <div class="stat-card"><div id="profileReferrals" class="stat-value">0</div><div>Рефералов</div></div>
+                        <div class="stat-card"><div id="profileTelegram" class="stat-value">—</div><div>Telegram ID</div></div>
+                    </div>
+                </div>
+                <div class="subscriptions"><h3>📋 Мои подписки</h3><div id="subscriptionsList"></div></div>
+                <div style="margin-top:24px"><button class="btn" onclick="getTrial()">🎁 Пробный период (3 дня)</button></div>
+                <div style="margin-top:24px; background:#111; border-radius:24px; padding:24px">
+                    <h3>👥 Реферальная программа</h3>
+                    <div class="link-code" id="referralLink"></div>
+                    <button class="btn" onclick="copyReferralLink()">📋 Копировать ссылку</button>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
-            <a href="https://t.me/jordanteamvpnbot">🤖 Бот</a> | 
-            <a href="https://t.me/moderator_ms">🆘 Поддержка</a> | 
-            <a href="https://www.happ.su/main/ru">📱 Скачать Happ</a>
+            <a href="https://t.me/jordanteamvpnbot" style="color:#888">🤖 Бот</a> | 
+            <a href="https://t.me/moderator_ms" style="color:#888">🆘 Поддержка</a> | 
+            <a href="https://www.happ.su/main/ru" style="color:#888">📱 Скачать Happ</a>
         </div>
     </div>
 
     <script>
-        async function getTrial() {
-            const telegramId = document.getElementById('telegramId').value.trim();
-            const resultDiv = document.getElementById('result');
-            const loadingDiv = document.getElementById('loading');
-            
-            if (!telegramId) {
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ Введите Telegram ID';
-                return;
-            }
-            if (!/^\d+$/.test(telegramId)) {
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ ID должен содержать только цифры';
-                return;
-            }
-            
-            resultDiv.style.display = 'none';
-            loadingDiv.style.display = 'block';
-            
-            try {
-                const response = await fetch('https://vpntelegramproxy.mooo.com:8443/api/trial', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ telegram_id: parseInt(telegramId) })
-                });
-                
-                const data = await response.json();
-                loadingDiv.style.display = 'none';
-                
-                if (data.success && data.link) {
-                    resultDiv.className = 'result success';
-                    resultDiv.innerHTML = `
-                        ✅ Ваш пробный VPN готов на 3 дня!<br><br>
-                        📱 Как подключиться:<br>
-                        1️⃣ Скачайте <a href="https://www.happ.su/main/ru" target="_blank">Happ</a><br>
-                        2️⃣ Откройте Happ → + → Импорт из буфера обмена<br>
-                        3️⃣ Нажмите на ссылку ниже<br><br>
-                        <div class="link-code" id="vpnLink">${data.link}</div>
-                        <button onclick="copyLink()">📋 Скопировать ссылку</button>
-                        <br><br>
-                        🎁 Пробный период: 3 дня
-                    `;
-                } else {
-                    resultDiv.className = 'result error';
-                    resultDiv.innerHTML = data.message || '❌ Ошибка получения VPN. Возможно, вы уже активировали пробный период.';
-                }
-            } catch (error) {
-                loadingDiv.style.display = 'none';
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ Ошибка подключения к серверу. Проверьте интернет и попробуйте позже.<br><br>Если ошибка повторяется, обратитесь к поддержке: @moderator_ms';
-                console.error('Error:', error);
-            }
+        let currentUser = null;
+        const API_URL = 'https://vpntelegramproxy.mooo.com:8443';
+        
+        function showPage(page) {
+            document.querySelectorAll('[id$="Page"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(page + 'Page').classList.remove('hidden');
+            if (page === 'profile') loadProfile();
         }
         
-        function copyLink() {
-            const link = document.getElementById('vpnLink').innerText;
-            navigator.clipboard.writeText(link);
-            alert('Ссылка скопирована!');
+        function updateNav() {
+            const loggedIn = currentUser !== null;
+            document.getElementById('navProfile').style.display = loggedIn ? 'inline' : 'none';
+            document.getElementById('navLogin').style.display = loggedIn ? 'none' : 'inline';
+            document.getElementById('navRegister').style.display = loggedIn ? 'none' : 'inline';
+            document.getElementById('navLogout').style.display = loggedIn ? 'inline' : 'none';
         }
+        
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const alertDiv = document.getElementById('loginAlert');
+            if (!username || !password) { alertDiv.className = 'alert alert-error'; alertDiv.innerHTML = '❌ Заполните все поля'; return; }
+            try {
+                const res = await fetch(`${API_URL}/api/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
+                const data = await res.json();
+                if (data.success) {
+                    currentUser = data.user;
+                    localStorage.setItem('user', JSON.stringify(currentUser));
+                    updateNav();
+                    showPage('profile');
+                } else {
+                    alertDiv.className = 'alert alert-error';
+                    alertDiv.innerHTML = data.message || '❌ Неверный логин или пароль';
+                }
+            } catch(e) { alertDiv.className = 'alert alert-error'; alertDiv.innerHTML = '❌ Ошибка сервера'; }
+        }
+        
+        async function register() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const telegramId = document.getElementById('regTelegram').value;
+            const alertDiv = document.getElementById('registerAlert');
+            if (!username || !password || !telegramId) { alertDiv.className = 'alert alert-error'; alertDiv.innerHTML = '❌ Заполните все поля'; return; }
+            if (!/^\d+$/.test(telegramId)) { alertDiv.className = 'alert alert-error'; alertDiv.innerHTML = '❌ Telegram ID только цифры'; return; }
+            try {
+                const res = await fetch(`${API_URL}/api/register`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password, telegram_id: parseInt(telegramId) }) });
+                const data = await res.json();
+                if (data.success && data.link) {
+                    alertDiv.className = 'alert alert-success';
+                    alertDiv.innerHTML = '✅ Регистрация успешна! Теперь войдите.';
+                    setTimeout(() => showPage('login'), 2000);
+                } else {
+                    alertDiv.className = 'alert alert-error';
+                    alertDiv.innerHTML = data.message || '❌ Ошибка регистрации';
+                }
+            } catch(e) { alertDiv.className = 'alert alert-error'; alertDiv.innerHTML = '❌ Ошибка сервера'; }
+        }
+        
+        async function loadProfile() {
+            if (!currentUser) return;
+            document.getElementById('profileUsername').innerHTML = currentUser.username;
+            document.getElementById('profileBalance').innerHTML = currentUser.balance || 0;
+            document.getElementById('profileTelegram').innerHTML = currentUser.telegram_id || '—';
+            document.getElementById('referralLink').innerHTML = `https://t.me/jordanteamvpnbot?start=ref_${currentUser.id}`;
+            try {
+                const res = await fetch(`${API_URL}/api/subscriptions?user_id=${currentUser.id}`);
+                const data = await res.json();
+                const subsList = document.getElementById('subscriptionsList');
+                if (data.subscriptions && data.subscriptions.length) {
+                    subsList.innerHTML = data.subscriptions.map(s => `<div class="subscription-item"><div>${s.type}</div><div>${s.status === 'active' ? '✅ Активна' : '❌ Истекла'}</div><div>${s.expiry_date || '—'}</div></div>`).join('');
+                } else { subsList.innerHTML = '<div class="subscription-item">Нет подписок</div>'; }
+            } catch(e) { console.error(e); }
+        }
+        
+        async function getTrial() {
+            if (!currentUser || !currentUser.telegram_id) { alert('Сначала укажите Telegram ID'); return; }
+            try {
+                const res = await fetch(`${API_URL}/api/trial`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ telegram_id: currentUser.telegram_id }) });
+                const data = await res.json();
+                if (data.success && data.link) {
+                    alert(`✅ Пробный VPN готов! Ссылка: ${data.link}`);
+                    loadProfile();
+                } else { alert(data.message || '❌ Ошибка получения VPN'); }
+            } catch(e) { alert('❌ Ошибка сервера'); }
+        }
+        
+        function buyPlan(days) { if (!currentUser) { alert('Войдите в аккаунт'); showPage('login'); } else window.open('https://t.me/jordanteamvpnbot', '_blank'); }
+        function copyReferralLink() { navigator.clipboard.writeText(document.getElementById('referralLink').innerText); alert('Ссылка скопирована!'); }
+        function logout() { currentUser = null; localStorage.removeItem('user'); updateNav(); showPage('home'); }
+        
+        const saved = localStorage.getItem('user');
+        if (saved) { currentUser = JSON.parse(saved); updateNav(); }
+        showPage('home');
     </script>
 </body>
 </html>
