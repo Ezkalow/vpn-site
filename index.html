@@ -3,545 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JordanVPN | Быстрый и безопасный VPN</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
+    <title>JordanVPN | Регистрация</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        .header {
-            padding: 32px 0;
-            border-bottom: 1px solid #222;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-        
-        .nav-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #fff;
-        }
-        
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            color: #888;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-        }
-        
-        .btn-primary {
-            background: #ffffff;
-            color: #000000;
-        }
-        
-        .btn-primary:hover {
-            background: #dddddd;
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            border: 1px solid #ffffff;
-            color: #ffffff;
-            background: transparent;
-        }
-        
-        .btn-outline:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .trial-form {
-            background: #0a0a0a;
-            border: 1px solid #222;
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 500px;
-            margin: 40px auto;
-            text-align: center;
-        }
-        
-        .trial-form h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .trial-form input {
-            width: 100%;
-            padding: 14px 20px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 40px;
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 16px;
-            outline: none;
-        }
-        
-        .trial-form input:focus {
-            border-color: #fff;
-        }
-        
-        .trial-result {
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: 16px;
-            display: none;
-        }
-        
-        .trial-result.success {
-            background: rgba(46, 204, 113, 0.1);
-            border: 1px solid #2ecc71;
-            display: block;
-        }
-        
-        .trial-result.error {
-            background: rgba(231, 76, 60, 0.1);
-            border: 1px solid #e74c3c;
-            display: block;
-        }
-        
-        .link-code {
-            background: #1a1a1a;
-            padding: 12px;
-            border-radius: 12px;
-            font-family: monospace;
-            word-break: break-all;
-            margin: 16px 0;
-            font-size: 12px;
-        }
-        
-        .copy-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        .features {
-            padding: 80px 0;
-            border-top: 1px solid #222;
-        }
-        
-        .section-title {
-            font-size: 36px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-        }
-        
-        .feature-card {
-            background: #0a0a0a;
-            padding: 32px;
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid #222;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-        }
-        
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-        
-        .feature-card p {
-            color: #888;
-            font-size: 14px;
-        }
-        
-        .pricing {
-            padding: 80px 0;
-            background: #030303;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 32px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: #0a0a0a;
-            padding: 32px;
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid #222;
-            transition: transform 0.3s;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-        }
-        
-        .pricing-price {
-            font-size: 36px;
-            font-weight: 800;
-            margin: 20px 0;
-        }
-        
-        .pricing-price small {
-            font-size: 14px;
-            color: #888;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin: 24px 0;
-        }
-        
-        .pricing-features li {
-            padding: 8px 0;
-            color: #aaa;
-            font-size: 14px;
-        }
-        
-        .howto {
-            padding: 80px 0;
-            border-top: 1px solid #222;
-        }
-        
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background: #1a1a1a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            border: 1px solid #333;
-        }
-        
-        .footer {
-            padding: 48px 0;
-            border-top: 1px solid #222;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .nav {
-                flex-direction: column;
-            }
-            
-            .trial-form {
-                margin: 20px;
-                padding: 24px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system; background: #000; color: #fff; line-height: 1.5; padding: 20px; }
+        .container { max-width: 500px; margin: 50px auto; background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 40px; }
+        h1 { font-size: 28px; margin-bottom: 8px; }
+        .sub { color: #666; margin-bottom: 32px; }
+        input { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; margin-bottom: 16px; outline: none; }
+        button { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 16px; }
+        .result { margin-top: 20px; padding: 16px; border-radius: 16px; display: none; }
+        .success { background: rgba(46,204,113,0.1); border: 1px solid #2ecc71; display: block; }
+        .error { background: rgba(231,76,60,0.1); border: 1px solid #e74c3c; display: block; }
+        .link-code { background: #1a1a1a; padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; margin: 16px 0; font-size: 12px; }
+        .footer { text-align: center; margin-top: 24px; font-size: 12px; color: #666; }
+        a { color: #fff; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="nav">
-                <div class="logo">JORDAN<span class="gradient-text">VPN</span></div>
-                <div class="nav-links">
-                    <a href="#features">Преимущества</a>
-                    <a href="#pricing">Тарифы</a>
-                    <a href="#howto">Как подключиться</a>
-                </div>
-            </div>
-        </div>
+        <h1>🇩🇪 JordanVPN</h1>
+        <div class="sub">Быстрый VPN в Германии. Пробный период 3 дня.</div>
         
-        <div class="hero">
-            <h1>Быстрый и <span class="gradient-text">безопасный</span> VPN</h1>
-            <p>Сервер в Германии. Высокая скорость. Обход любых блокировок.</p>
-        </div>
+        <input type="text" id="telegramId" placeholder="Ваш Telegram ID (цифры)">
+        <button onclick="register()">Получить VPN</button>
         
-        <div class="trial-form">
-            <h3>🎁 Получить пробный VPN на 3 дня</h3>
-            <input type="text" id="telegramId" placeholder="Введите ваш Telegram ID">
-            <button class="btn btn-primary" onclick="getTrial()">Получить VPN</button>
-            <div id="result" class="trial-result"></div>
-            <p style="font-size: 12px; color: #666; margin-top: 16px;">
-                Как узнать Telegram ID? Напишите <code>@userinfobot</code> → /start
-            </p>
-        </div>
-        
-        <div class="features" id="features">
-            <h2 class="section-title">Почему мы?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Максимальная скорость</h3>
-                    <p>Оптимизированные серверы в Европе для быстрого интернета</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Надёжная защита</h3>
-                    <p>Современные протоколы шифрования для полной конфиденциальности</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h3>Обход блокировок</h3>
-                    <p>Работает там, где другие не проходят</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Все устройства</h3>
-                    <p>Windows, macOS, Android, iOS — всё поддерживается</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="pricing" id="pricing">
-            <h2 class="section-title">💰 Тарифы</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>14 дней</h3>
-                    <div class="pricing-price">86 ₽ <small>/ 58⭐</small></div>
-                    <ul class="pricing-features">
-                        <li>📊 100 ГБ трафика</li>
-                        <li>⚡ Максимальная скорость</li>
-                        <li>🔒 Защита 24/7</li>
-                        <li>📱 Все устройства</li>
-                    </ul>
-                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Купить в боте</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>30 дней</h3>
-                    <div class="pricing-price">173 ₽ <small>/ 115⭐</small></div>
-                    <ul class="pricing-features">
-                        <li>📊 300 ГБ трафика</li>
-                        <li>⚡ Максимальная скорость</li>
-                        <li>🔒 Защита 24/7</li>
-                        <li>📱 Все устройства</li>
-                    </ul>
-                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Купить в боте</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>90 дней</h3>
-                    <div class="pricing-price">432 ₽ <small>/ 288⭐</small></div>
-                    <ul class="pricing-features">
-                        <li>📊 900 ГБ трафика</li>
-                        <li>⚡ Максимальная скорость</li>
-                        <li>🔒 Защита 24/7</li>
-                        <li>📱 Все устройства</li>
-                    </ul>
-                    <a href="https://t.me/jordanteamvpnbot" class="btn btn-outline" target="_blank">Купить в боте</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="howto" id="howto">
-            <h2 class="section-title">📱 Как подключиться</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Скачайте Happ</h3>
-                    <p>Приложение для всех устройств</p>
-                    <a href="https://www.happ.su/main/ru" style="color: #fff;" target="_blank">happ.su →</a>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Напишите /start</h3>
-                    <p>Боту @jordanteamvpnbot</p>
-                    <a href="https://t.me/jordanteamvpnbot" style="color: #fff;" target="_blank">@jordanteamvpnbot →</a>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Получите ссылку</h3>
-                    <p>Выберите тариф или пробный период</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3>Вставьте в Happ</h3>
-                    <p>Импорт из буфера обмена → Включить</p>
-                </div>
-            </div>
-        </div>
+        <div id="result" class="result"></div>
         
         <div class="footer">
-            <p>🇩🇪 Сервер в Германии | 🎁 Пробный период 3 дня</p>
-            <p style="margin-top: 16px;">🆘 Поддержка: <a href="https://t.me/moderator_ms" style="color: #fff;">@moderator_ms</a></p>
-            <p style="margin-top: 24px;">© 2025 JordanVPN</p>
+            <a href="https://t.me/jordanteamvpnbot">🤖 Бот</a> | 
+            <a href="https://t.me/moderator_ms">🆘 Поддержка</a>
         </div>
     </div>
-    
-    <script>// version 3.0
 
-        async function getTrial() {
+    <script>
+        async function register() {
             const telegramId = document.getElementById('telegramId').value.trim();
             const resultDiv = document.getElementById('result');
             
             if (!telegramId) {
-                resultDiv.className = 'trial-result error';
-                resultDiv.innerHTML = '❌ Введите ваш Telegram ID';
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Введите Telegram ID';
                 return;
             }
-            
             if (!/^\d+$/.test(telegramId)) {
-                resultDiv.className = 'trial-result error';
-                resultDiv.innerHTML = '❌ Telegram ID должен содержать только цифры';
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ ID должен содержать только цифры';
                 return;
             }
             
-            resultDiv.className = 'trial-result';
-            resultDiv.innerHTML = '🔄 Создаю VPN...';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '🔄 Регистрируем...';
             resultDiv.style.display = 'block';
             
             try {
-                const response = await fetch(`https://vpntelegramproxy.mooo.com:8443/api/trial?user_id=${telegramId}&_=${Date.now()}`);
+                const response = await fetch(`https://vpntelegramproxy.mooo.com:8443/api/register?user_id=${telegramId}&_=${Date.now()}`);
                 const data = await response.json();
                 
                 if (data.success && data.link) {
-                    resultDiv.className = 'trial-result success';
+                    resultDiv.className = 'result success';
                     resultDiv.innerHTML = `
-                        ✅ Ваш пробный VPN готов на 3 дня!<br><br>
+                        ✅ Регистрация прошла успешно!<br><br>
+                        📱 <strong>Как подключиться:</strong><br>
+                        1️⃣ Скачайте <a href="https://www.happ.su/main/ru" target="_blank">Happ</a><br>
+                        2️⃣ Откройте Happ → + → Импорт из буфера обмена<br>
+                        3️⃣ Нажмите на ссылку ниже<br><br>
                         <div class="link-code" id="vpnLink">${data.link}</div>
-                        <button class="copy-btn" onclick="copyLink()">📋 Скопировать ссылку</button>
-                        <p style="margin-top: 12px; font-size: 12px;">Откройте Happ → Импорт из буфера обмена → Вставьте ссылку</p>
+                        <button onclick="copyLink()">📋 Скопировать ссылку</button>
+                        <br><br>
+                        🎁 Пробный период: 3 дня
                     `;
                 } else {
-                    resultDiv.className = 'trial-result error';
-                    resultDiv.innerHTML = data.message || '❌ Ошибка получения VPN. Возможно, у вас уже есть активная подписка.';
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = data.message || '❌ Ошибка. Возможно, вы уже регистрировались.';
                 }
             } catch (error) {
-                resultDiv.className = 'trial-result error';
-                resultDiv.innerHTML = '❌ Ошибка подключения к серверу. Попробуйте позже.';
-                console.error('Error:', error);
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Ошибка сервера. Попробуйте позже.';
+                console.error(error);
             }
         }
         
         function copyLink() {
-            const linkElement = document.getElementById('vpnLink');
-            const link = linkElement.innerText;
-            navigator.clipboard.writeText(link).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                const originalText = btn.innerText;
-                btn.innerText = '✅ Скопировано!';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                }, 2000);
-            }).catch(() => {
-                alert('Не удалось скопировать. Выделите ссылку вручную.');
-            });
+            const link = document.getElementById('vpnLink').innerText;
+            navigator.clipboard.writeText(link);
+            alert('Ссылка скопирована!');
         }
     </script>
 </body>
