@@ -225,7 +225,7 @@
             document.getElementById('profileBalance').innerHTML = currentUser.balance || 0;
             document.getElementById('profileTelegram').innerHTML = currentUser.telegram_id || '—';
             if (currentUser.telegram_id) {
-                document.getElementById('referralLink').innerHTML = `https://t.me/jordanteamvpnbot?start=ref_${currentUser.id}`;
+                document.getElementById('referralLink').innerHTML = `https://t.me/jordanteamvpnbot?start=ref_${currentUser.telegram_id}`;
             } else {
                 document.getElementById('referralLink').innerHTML = 'Введите Telegram ID, чтобы получить ссылку';
             }
@@ -264,7 +264,7 @@
                     currentUser.telegram_id = parseInt(telegramId);
                     localStorage.setItem('user', JSON.stringify(currentUser));
                     document.getElementById('profileTelegram').innerHTML = telegramId;
-                    document.getElementById('referralLink').innerHTML = `https://t.me/jordanteamvpnbot?start=ref_${currentUser.id}`;
+                    document.getElementById('referralLink').innerHTML = `https://t.me/jordanteamvpnbot?start=ref_${currentUser.telegram_id}`;
                     showAlert('trialMessage', 'Telegram ID сохранён!', 'success');
                 } else {
                     showAlert('trialMessage', data.message || 'Ошибка', 'error');
