@@ -3,146 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JordanVPN | Пробный VPN 3 дня</title>
+    <title>JordanVPN | Пробный VPN</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto; background: #000; color: #fff; line-height: 1.5; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        .header { padding: 32px 0; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .logo { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
-        .nav a { color: #aaa; text-decoration: none; margin-left: 32px; transition: color 0.2s; }
-        .nav a:hover { color: #fff; }
-        .hero { text-align: center; padding: 80px 0; }
-        .hero h1 { font-size: 56px; font-weight: 800; margin-bottom: 24px; }
-        .hero p { font-size: 20px; color: #888; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .btn { display: inline-block; background: #fff; color: #000; padding: 14px 32px; border-radius: 40px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; font-size: 16px; transition: 0.2s; }
-        .btn:hover { background: #ddd; transform: translateY(-2px); }
-        .trial-form { background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 40px; max-width: 500px; margin: 40px auto; text-align: center; }
-        .trial-form input { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; margin-bottom: 16px; }
-        .trial-result { margin-top: 20px; padding: 16px; border-radius: 16px; display: none; }
-        .trial-result.success { background: rgba(46,204,113,0.1); border: 1px solid #2ecc71; display: block; }
-        .trial-result.error { background: rgba(231,76,60,0.1); border: 1px solid #e74c3c; display: block; }
-        .link-code { background: #1a1a1a; padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; margin: 16px 0; font-size: 12px; }
-        .copy-btn { background: #fff; color: #000; border: none; padding: 8px 20px; border-radius: 40px; cursor: pointer; font-weight: 600; margin-top: 10px; }
-        .footer { text-align: center; padding: 48px 0; border-top: 1px solid #222; color: #666; font-size: 14px; margin-top: 40px; }
-        @media (max-width: 768px) { .hero h1 { font-size: 36px; } .hero p { font-size: 18px; } .nav { justify-content: center; } .nav a { margin: 0 12px; } }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+        input, button {
+            padding: 12px 20px;
+            margin: 10px;
+            border-radius: 40px;
+            border: none;
+            font-size: 16px;
+        }
+        input {
+            background: #1a1a1a;
+            color: #fff;
+            width: 260px;
+            border: 1px solid #333;
+        }
+        button {
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #ddd;
+            transform: translateY(-2px);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 24px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .success {
+            background: rgba(46, 204, 113, 0.1);
+            border: 1px solid #2ecc71;
+        }
+        .error {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid #e74c3c;
+        }
+        .link-code {
+            background: #1a1a1a;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 16px 0;
+            font-size: 12px;
+        }
+        a {
+            color: #fff;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">JORDAN<span style="color: #aaa;">VPN</span></div>
-            <div class="nav">
-                <a href="#features">Преимущества</a>
-                <a href="#pricing">Тарифы</a>
-                <a href="#howto">Как подключиться</a>
-            </div>
-        </div>
+    <h1>🇩🇪 JordanVPN</h1>
+    <p>Сервер в Германии. Пробный период — 3 дня бесплатно.</p>
 
-        <div class="hero">
-            <h1>Быстрый и <span style="color: #fff;">безопасный</span> VPN</h1>
-            <p>Сервер в Германии. Обход блокировок. Пробный период 3 дня.</p>
-        </div>
-
-        <div class="trial-form">
-            <h3>🎁 Получить пробный VPN на 3 дня</h3>
-            <input type="text" id="telegramId" placeholder="Введите ваш Telegram ID">
-            <button class="btn" onclick="getTrial()">Получить VPN</button>
-            <div id="result" class="trial-result"></div>
-            <p style="font-size: 12px; color: #666; margin-top: 16px;">
-                Как узнать Telegram ID? Напишите <code>@userinfobot</code> → /start
-            </p>
-        </div>
-
-        <div id="features" class="hero" style="padding: 40px 0;">
-            <h2>Почему мы?</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 32px; margin-top: 40px;">
-                <div>⚡ Высокая скорость</div>
-                <div>🔒 Надёжная защита</div>
-                <div>🌍 Обход блокировок</div>
-                <div>📱 Все устройства</div>
-            </div>
-        </div>
-
-        <div id="pricing" class="hero" style="padding: 40px 0;">
-            <h2>💰 Тарифы</h2>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-top: 40px;">
-                <div><strong>14 дней</strong><br>60 ₽ / 40⭐<br>100 ГБ</div>
-                <div><strong>30 дней</strong><br>120 ₽ / 80⭐<br>300 ГБ</div>
-                <div><strong>90 дней</strong><br>300 ₽ / 200⭐<br>900 ГБ</div>
-            </div>
-        </div>
-
-        <div id="howto" class="hero" style="padding: 40px 0;">
-            <h2>📱 Как подключиться</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 24px; margin-top: 40px;">
-                <div>1️⃣ Скачайте Happ</div>
-                <div>2️⃣ Получите ссылку</div>
-                <div>3️⃣ Вставьте в Happ</div>
-                <div>4️⃣ Включите VPN</div>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>🇩🇪 Сервер в Германии | 🎁 Пробный период 3 дня</p>
-            <p>🆘 Поддержка: <a href="https://t.me/moderator_ms" style="color: #fff;">@moderator_ms</a></p>
-            <p>© 2025 JordanVPN</p>
-        </div>
+    <div>
+        <input type="text" id="userId" placeholder="Ваш Telegram ID">
+        <button onclick="getTrial()">Получить VPN</button>
     </div>
+
+    <div id="result" class="result" style="display: none;"></div>
+
+    <footer>
+        <p>📱 <a href="https://www.happ.su/main/ru">Скачать Happ</a> | 🆘 <a href="https://t.me/moderator_ms">Поддержка</a></p>
+        <p>💳 Тарифы в боте: <a href="https://t.me/jordanteamvpnbot">@jordanteamvpnbot</a></p>
+    </footer>
 
     <script>
         async function getTrial() {
-            const telegramId = document.getElementById('telegramId').value.trim();
+            const userId = document.getElementById('userId').value.trim();
             const resultDiv = document.getElementById('result');
-
-            if (!telegramId) {
-                resultDiv.className = 'trial-result error';
+            
+            if (!userId) {
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result error';
                 resultDiv.innerHTML = '❌ Введите ваш Telegram ID';
                 return;
             }
-            if (!/^\d+$/.test(telegramId)) {
-                resultDiv.className = 'trial-result error';
-                resultDiv.innerHTML = '❌ Telegram ID должен содержать только цифры';
+            if (!/^\d+$/.test(userId)) {
+                resultDiv.style.display = 'block';
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ ID должен содержать только цифры';
                 return;
             }
 
-            resultDiv.className = 'trial-result';
-            resultDiv.innerHTML = '🔄 Создаю VPN...';
             resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '🔄 Создаю VPN...';
 
             try {
-                const url = `https://vpntelegramproxy.mooo.com:8443/api/trial?user_id=${telegramId}&_=${Date.now()}`;
+                const url = `https://vpntelegramproxy.mooo.com:8443/api/trial?user_id=${userId}&_=${Date.now()}`;
                 const response = await fetch(url);
                 const data = await response.json();
 
                 if (data.success && data.link) {
-                    resultDiv.className = 'trial-result success';
+                    resultDiv.className = 'result success';
                     resultDiv.innerHTML = `
-                        ✅ Ваш пробный VPN готов на 3 дня!<br><br>
+                        ✅ Ваш пробный VPN готов!<br>
                         <div class="link-code" id="vpnLink">${data.link}</div>
-                        <button class="copy-btn" onclick="copyLink()">📋 Скопировать ссылку</button>
+                        <button onclick="copyLink()">📋 Скопировать ссылку</button>
                         <p style="margin-top: 12px; font-size: 12px;">Откройте Happ → Импорт из буфера обмена → Вставьте ссылку</p>
                     `;
+                    window.vpnLink = data.link;
                 } else {
-                    resultDiv.className = 'trial-result error';
+                    resultDiv.className = 'result error';
                     resultDiv.innerHTML = data.message || '❌ Ошибка получения VPN. Возможно, у вас уже есть активная подписка.';
                 }
-            } catch (error) {
-                resultDiv.className = 'trial-result error';
+            } catch (err) {
+                resultDiv.className = 'result error';
                 resultDiv.innerHTML = '❌ Ошибка подключения к серверу. Попробуйте позже.';
-                console.error('Error:', error);
+                console.error(err);
             }
         }
 
         function copyLink() {
-            const linkElement = document.getElementById('vpnLink');
-            const link = linkElement.innerText;
-            navigator.clipboard.writeText(link).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                const original = btn.innerText;
-                btn.innerText = '✅ Скопировано!';
-                setTimeout(() => { btn.innerText = original; }, 2000);
-            }).catch(() => alert('Не удалось скопировать. Выделите ссылку вручную.'));
+            if (window.vpnLink) {
+                navigator.clipboard.writeText(window.vpnLink);
+                alert('Ссылка скопирована!');
+            } else {
+                alert('Не удалось скопировать ссылку');
+            }
         }
     </script>
 </body>
