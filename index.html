@@ -3,94 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JordanVPN | Регистрация и вход</title>
+    <title>JordanVPN | Регистрация</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system; background: #000; color: #fff; line-height: 1.5; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #222; flex-wrap: wrap; gap: 20px; }
-        .logo { font-size: 28px; font-weight: 700; }
-        .nav a { color: #aaa; text-decoration: none; margin-left: 20px; }
-        .nav a:hover { color: #fff; }
-        .card { background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 32px; margin: 40px 0; }
-        .form-group { margin-bottom: 20px; }
-        input, select { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; }
-        button { padding: 14px 28px; background: #fff; color: #000; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 16px; }
-        .btn-outline { background: transparent; border: 1px solid #fff; color: #fff; }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-        .prices { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
-        .price-card { background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 24px; flex: 1; text-align: center; }
-        .price { font-size: 28px; font-weight: 700; margin: 16px 0; }
-        .result { margin-top: 20px; padding: 16px; border-radius: 16px; display: none; }
+        body { font-family: system-ui; background: #000; color: #fff; line-height: 1.5; padding: 20px; }
+        .container { max-width: 500px; margin: 50px auto; background: #0a0a0a; border: 1px solid #222; border-radius: 24px; padding: 40px; }
+        h1 { text-align: center; margin-bottom: 8px; }
+        .sub { text-align: center; color: #666; margin-bottom: 32px; }
+        input { width: 100%; padding: 14px 20px; background: #1a1a1a; border: 1px solid #333; border-radius: 40px; color: #fff; font-size: 16px; margin-bottom: 16px; }
+        button { width: 100%; padding: 14px; background: #fff; color: #000; border: none; border-radius: 40px; font-weight: 600; cursor: pointer; font-size: 16px; margin-bottom: 16px; }
+        .tab { display: flex; gap: 10px; margin-bottom: 24px; }
+        .tab button { background: transparent; border: 1px solid #333; color: #fff; margin-bottom: 0; }
+        .tab button.active { background: #fff; color: #000; }
+        .result { margin-top: 16px; padding: 12px; border-radius: 12px; display: none; font-size: 14px; }
         .success { background: rgba(46,204,113,0.1); border: 1px solid #2ecc71; display: block; }
         .error { background: rgba(231,76,60,0.1); border: 1px solid #e74c3c; display: block; }
         .link-code { background: #1a1a1a; padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; margin: 16px 0; font-size: 12px; }
-        .footer { text-align: center; padding: 40px 0; border-top: 1px solid #222; color: #666; margin-top: 40px; }
-        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .nav a { margin-left: 0; margin-right: 16px; } }
+        .footer { text-align: center; margin-top: 24px; font-size: 12px; color: #666; }
+        a { color: #fff; }
+        .hidden { display: none; }
+        .profile-info { background: #1a1a1a; border-radius: 16px; padding: 16px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">🇩🇪 JordanVPN</div>
-            <div class="nav">
-                <a href="#" onclick="showTab('home')">Главная</a>
-                <a href="#" onclick="showTab('prices')">Тарифы</a>
-                <a href="#" onclick="showTab('profile')">Профиль</a>
-                <a href="#" onclick="showTab('login')">Вход</a>
-                <a href="#" onclick="showTab('register')">Регистрация</a>
-            </div>
+        <h1>🇩🇪 JordanVPN</h1>
+        <div class="sub">Быстрый VPN в Германии</div>
+        
+        <div class="tab">
+            <button id="tabLogin" onclick="showLogin()" class="active">Вход</button>
+            <button id="tabRegister" onclick="showRegister()">Регистрация</button>
         </div>
-
-        <!-- Главная -->
-        <div id="homeTab" class="card" style="text-align: center;">
-            <h1>Быстрый VPN в Германии</h1>
-            <p style="margin: 20px 0; color: #888;">Обход блокировок. Высокая скорость. Пробный период 3 дня.</p>
-            <button onclick="showTab('register')">🎁 Получить пробный VPN</button>
-            <button class="btn-outline" onclick="showTab('prices')" style="margin-left: 16px;">💰 Тарифы</button>
-        </div>
-
-        <!-- Тарифы -->
-        <div id="pricesTab" class="card" style="display: none;">
-            <h2>💰 Тарифы VLESS VPN</h2>
-            <div class="prices">
-                <div class="price-card"><h3>14 дней</h3><div class="price">86 ₽ / 58⭐</div><div>100 ГБ</div><button onclick="buy(14)" style="margin-top: 16px;">Выбрать</button></div>
-                <div class="price-card"><h3>30 дней</h3><div class="price">173 ₽ / 115⭐</div><div>300 ГБ</div><button onclick="buy(30)" style="margin-top: 16px;">Выбрать</button></div>
-                <div class="price-card"><h3>90 дней</h3><div class="price">432 ₽ / 288⭐</div><div>900 ГБ</div><button onclick="buy(90)" style="margin-top: 16px;">Выбрать</button></div>
-            </div>
-            <p style="margin-top: 20px; font-size: 14px; color: #666;">💳 Оплата картой или Telegram Stars. После оплаты ссылка придёт в Telegram бот.</p>
-            <button onclick="showTab('home')" class="btn-outline">← Назад</button>
-        </div>
-
-        <!-- Регистрация -->
-        <div id="registerTab" class="card" style="display: none;">
-            <h2>📝 Регистрация</h2>
-            <div class="form-group"><input type="text" id="regUsername" placeholder="Имя пользователя"></div>
-            <div class="form-group"><input type="password" id="regPassword" placeholder="Пароль"></div>
-            <div class="form-group"><input type="text" id="regTelegram" placeholder="Telegram ID (цифры)"></div>
-            <button onclick="register()">Зарегистрироваться</button>
-            <div id="regResult" class="result"></div>
-            <p style="margin-top: 16px;">Уже есть аккаунт? <a href="#" onclick="showTab('login')">Войти</a></p>
-        </div>
-
-        <!-- Вход -->
-        <div id="loginTab" class="card" style="display: none;">
-            <h2>🔐 Вход</h2>
-            <div class="form-group"><input type="text" id="loginUsername" placeholder="Имя пользователя"></div>
-            <div class="form-group"><input type="password" id="loginPassword" placeholder="Пароль"></div>
+        
+        <!-- Форма входа -->
+        <div id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Имя пользователя">
+            <input type="password" id="loginPassword" placeholder="Пароль">
             <button onclick="login()">Войти</button>
             <div id="loginResult" class="result"></div>
-            <p style="margin-top: 16px;">Нет аккаунта? <a href="#" onclick="showTab('register')">Зарегистрироваться</a></p>
         </div>
-
+        
+        <!-- Форма регистрации -->
+        <div id="registerForm" class="hidden">
+            <input type="text" id="regUsername" placeholder="Имя пользователя">
+            <input type="password" id="regPassword" placeholder="Пароль">
+            <input type="text" id="regTelegram" placeholder="Telegram ID (цифры)">
+            <button onclick="register()">Зарегистрироваться</button>
+            <div id="regResult" class="result"></div>
+        </div>
+        
         <!-- Профиль -->
-        <div id="profileTab" class="card" style="display: none;">
-            <h2>👤 Профиль</h2>
-            <div id="profileInfo"></div>
-            <div id="profileVpn"></div>
-            <button onclick="logout()" class="btn-outline">Выйти</button>
+        <div id="profileForm" class="hidden">
+            <div id="profileInfo" class="profile-info"></div>
+            <button onclick="getTrial()">🎁 Получить пробный VPN (3 дня)</button>
+            <div id="trialResult" class="result"></div>
         </div>
-
+        
         <div class="footer">
             <a href="https://t.me/jordanteamvpnbot">🤖 Бот</a> | 
             <a href="https://t.me/moderator_ms">🆘 Поддержка</a> | 
@@ -99,55 +67,24 @@
     </div>
 
     <script>
-        let currentUser = localStorage.getItem('user');
-
-        function showTab(tab) {
-            document.getElementById('homeTab').style.display = 'none';
-            document.getElementById('pricesTab').style.display = 'none';
-            document.getElementById('registerTab').style.display = 'none';
-            document.getElementById('loginTab').style.display = 'none';
-            document.getElementById('profileTab').style.display = 'none';
-            document.getElementById(tab + 'Tab').style.display = 'block';
-            
-            if (tab === 'profile') loadProfile();
+        let currentUser = null;
+        
+        function showLogin() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('profileForm').classList.add('hidden');
+            document.getElementById('tabLogin').classList.add('active');
+            document.getElementById('tabRegister').classList.remove('active');
         }
-
-        async function register() {
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            const telegramId = document.getElementById('regTelegram').value;
-            const resultDiv = document.getElementById('regResult');
-            
-            if (!username || !password || !telegramId) {
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ Заполните все поля';
-                return;
-            }
-            
-            resultDiv.className = 'result';
-            resultDiv.innerHTML = '🔄 Регистрация...';
-            
-            try {
-                const response = await fetch('https://vpntelegramproxy.mooo.com:8443/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password, telegram_id: parseInt(telegramId) })
-                });
-                const data = await response.json();
-                if (data.success) {
-                    resultDiv.className = 'result success';
-                    resultDiv.innerHTML = '✅ Регистрация успешна! Теперь войдите.';
-                    setTimeout(() => showTab('login'), 2000);
-                } else {
-                    resultDiv.className = 'result error';
-                    resultDiv.innerHTML = data.message || '❌ Ошибка регистрации';
-                }
-            } catch(e) {
-                resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ Ошибка сервера';
-            }
+        
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('profileForm').classList.add('hidden');
+            document.getElementById('tabLogin').classList.remove('active');
+            document.getElementById('tabRegister').classList.add('active');
         }
-
+        
         async function login() {
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
@@ -155,7 +92,7 @@
             
             if (!username || !password) {
                 resultDiv.className = 'result error';
-                resultDiv.innerHTML = '❌ Введите логин и пароль';
+                resultDiv.innerHTML = '❌ Заполните все поля';
                 return;
             }
             
@@ -170,50 +107,115 @@
                 });
                 const data = await response.json();
                 if (data.success) {
-                    localStorage.setItem('user', JSON.stringify(data.user));
                     currentUser = data.user;
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('profileForm').classList.remove('hidden');
+                    document.getElementById('profileInfo').innerHTML = `
+                        <p><strong>👤 ${currentUser.username}</strong></p>
+                        <p>💰 Баланс: ${currentUser.balance} руб</p>
+                        <p>🆔 Telegram ID: ${currentUser.telegram_id || 'не указан'}</p>
+                    `;
                     resultDiv.className = 'result success';
                     resultDiv.innerHTML = '✅ Вход выполнен!';
-                    setTimeout(() => { showTab('profile'); }, 1000);
+                    setTimeout(() => { resultDiv.style.display = 'none'; }, 2000);
                 } else {
                     resultDiv.className = 'result error';
-                    resultDiv.innerHTML = '❌ Неверный логин или пароль';
+                    resultDiv.innerHTML = data.message || '❌ Неверный логин или пароль';
                 }
             } catch(e) {
                 resultDiv.className = 'result error';
                 resultDiv.innerHTML = '❌ Ошибка сервера';
             }
         }
-
-        async function loadProfile() {
-            if (!currentUser) {
-                showTab('login');
+        
+        async function register() {
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const telegramId = document.getElementById('regTelegram').value;
+            const resultDiv = document.getElementById('regResult');
+            
+            if (!username || !password || !telegramId) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Заполните все поля';
                 return;
             }
-            const profileDiv = document.getElementById('profileInfo');
-            const vpnDiv = document.getElementById('profileVpn');
-            profileDiv.innerHTML = `<p><strong>👤 ${currentUser.username}</strong></p><p>💰 Баланс: ${currentUser.balance || 0} руб</p><p>📊 Рефералов: ${currentUser.referrals || 0}</p>`;
-            vpnDiv.innerHTML = `<p><strong>🔗 Ваша реферальная ссылка:</strong><br>https://t.me/jordanteamvpnbot?start=ref_${currentUser.id}</p>`;
-        }
-
-        function logout() {
-            localStorage.removeItem('user');
-            currentUser = null;
-            showTab('home');
-        }
-
-        function buy(days) {
-            if (!currentUser) {
-                alert('Сначала войдите в профиль');
-                showTab('login');
+            if (!/^\d+$/.test(telegramId)) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Telegram ID должен содержать только цифры';
                 return;
             }
-            window.open('https://t.me/jordanteamvpnbot', '_blank');
+            
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '🔄 Регистрация...';
+            
+            try {
+                const response = await fetch('https://vpntelegramproxy.mooo.com:8443/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, telegram_id: parseInt(telegramId) })
+                });
+                const data = await response.json();
+                if (data.success && data.link) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        ✅ Регистрация успешна!<br><br>
+                        🔗 Ваша ссылка для подключения:<br>
+                        <div class="link-code">${data.link}</div>
+                        <button onclick="copyToClipboard('${data.link}')">📋 Копировать</button>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = data.message || '❌ Ошибка регистрации';
+                }
+            } catch(e) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Ошибка сервера';
+            }
         }
-
-        // Показываем главную при загрузке
-        if (currentUser) showTab('profile');
-        else showTab('home');
+        
+        async function getTrial() {
+            if (!currentUser || !currentUser.telegram_id) {
+                alert('Сначала укажите Telegram ID в профиле (при регистрации)');
+                return;
+            }
+            
+            const resultDiv = document.getElementById('trialResult');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '🔄 Получаю VPN...';
+            
+            try {
+                const response = await fetch('https://vpntelegramproxy.mooo.com:8443/api/trial', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ telegram_id: currentUser.telegram_id })
+                });
+                const data = await response.json();
+                if (data.success && data.link) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        ✅ Ваш пробный VPN готов на 3 дня!<br><br>
+                        🔗 Ссылка:<br>
+                        <div class="link-code">${data.link}</div>
+                        <button onclick="copyToClipboard('${data.link}')">📋 Копировать</button>
+                        <br><br>📱 Откройте <a href="https://www.happ.su/main/ru" target="_blank">Happ</a> → + → Импорт из буфера обмена
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = data.message || '❌ Ошибка получения VPN';
+                }
+            } catch(e) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Ошибка сервера';
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            alert('Ссылка скопирована!');
+        }
+        
+        // Проверяем сохранённую сессию
+        showLogin();
     </script>
 </body>
 </html>
