@@ -514,7 +514,7 @@
             
             try {
                 // Отправляем запрос на сервер (через бот API)
-                const response = await fetch(`http://185.121.134.172:8000/api/trial?user_id=${telegramId}`, {
+                const response = await fetch(`/api/trial?user_id=${telegramId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
