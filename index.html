@@ -250,7 +250,7 @@
                 return;
             }
             try {
-                const res = await fetch('https://vpntelegramproxy.mooo.com:8443/api/login', {
+                const res = await fetch('http://185.121.134.172:8000/api/login', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
                 });
@@ -281,7 +281,7 @@
                 return;
             }
             try {
-                const res = await fetch('https://vpntelegramproxy.mooo.com:8443/api/register', {
+                const res = await fetch('http://185.121.134.172:8000/api/register', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password, telegram_id: parseInt(telegramId) })
                 });
@@ -307,7 +307,7 @@
             
             // Загрузка подписок
             try {
-                const res = await fetch(`https://vpntelegramproxy.mooo.com:8443/api/subscriptions?user_id=${currentUser.id}`);
+                const res = await fetch(`http://185.121.134.172:8000/api/subscriptions?user_id=${currentUser.id}`);
                 const data = await res.json();
                 const subsList = document.getElementById('subscriptionsList');
                 if (data.subscriptions && data.subscriptions.length > 0) {
@@ -332,7 +332,7 @@
                 return;
             }
             try {
-                const res = await fetch('https://vpntelegramproxy.mooo.com:8443/api/trial', {
+                const res = await fetch('http://185.121.134.172:8000/api/trial', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ telegram_id: currentUser.telegram_id })
                 });
