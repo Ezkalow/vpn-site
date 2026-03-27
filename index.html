@@ -191,15 +191,6 @@
             </div>
         </div>
 
-        <div id="keyModal" class="modal">
-            <div class="modal-content">
-                <h3>🔑 Ключ для подключения</h3>
-                <div class="link-code" id="modalLink"></div>
-                <button class="btn" onclick="copyModalLink()">📋 Копировать</button>
-                <button class="btn" onclick="closeModal()" style="margin-top: 12px;">Закрыть</button>
-            </div>
-        </div>
-
         <div class="footer">
             <a href="https://t.me/jordanteamvpnbot" style="color:#888">🤖 Бот</a> | 
             <a href="https://t.me/moderator_ms" style="color:#888">🆘 Поддержка</a> | 
@@ -282,12 +273,12 @@
                 subscriptionsCache = data.subscriptions || [];
                 const subsList = document.getElementById('subscriptionsList');
                 if (subscriptionsCache.length > 0) {
-                    subsList.innerHTML = subscriptionsCache.map(s => `
+                    subsList.innerHTML = subscriptionsCache.map((s, idx) => `
                         <div class="subscription-item">
                             <div><strong>${s.type}</strong></div>
                             <div>${s.status === 'active' ? '✅ Активна' : '❌ Истекла'}</div>
                             <div>${s.expiry_date ? s.expiry_date.slice(0,10) : '—'}</div>
-                            <button class="btn btn-sm" onclick="showKey()">🔑 Посмотреть ключ</button>
+                            <div><button class="btn btn-sm" onclick="showLink('${s.link || ''}')">🔑 Показать ссылку</button></div>
                         </div>
                     `).join('');
                 } else {
@@ -296,30 +287,12 @@
             } catch(e) { console.error(e); }
         }
         
-        async function showKey() {
-            if (!currentUser) return;
-            try {
-                const res = await fetch(`${API_URL}/api/get_link?user_id=${currentUser.id}`);
-                const data = await res.json();
-                if (data.success && data.link) {
-                    document.getElementById('modalLink').innerHTML = data.link;
-                    document.getElementById('keyModal').style.display = 'flex';
-                } else {
-                    showAlert('trialMessage', '❌ Не удалось получить ключ', 'error');
-                }
-            } catch(e) {
-                showAlert('trialMessage', '❌ Ошибка получения ключа', 'error');
+        function showLink(link) {
+            if (link) {
+                alert(`Ссылка: ${link}`);
+            } else {
+                alert('Ссылка не сохранена. Получите пробный VPN заново.');
             }
-        }
-        
-        function copyModalLink() {
-            const link = document.getElementById('modalLink').innerText;
-            navigator.clipboard.writeText(link);
-            showAlert('trialMessage', '✅ Ключ скопирован!', 'success');
-        }
-        
-        function closeModal() {
-            document.getElementById('keyModal').style.display = 'none';
         }
         
         async function getTrial() {
