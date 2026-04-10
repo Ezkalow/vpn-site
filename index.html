@@ -1,294 +1,387 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GHETTO PRINCESS — войди в ритм</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHETTO PRINCESS — танцевальное комьюнити</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #0c0b0e;
-      overflow-x: hidden;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0b0f;
+            overflow-x: hidden;
+        }
 
-    /* ПЕРВЫЙ ЭКРАН — ЗАСТАВКА С ТАНЦОМ */
-    .intro-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #050508;
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-      opacity: 1;
-    }
+        /* Интро-заставка */
+        .intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.4s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 1;
+        }
 
-    .intro-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.85);
-    }
+        .intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
 
-    .intro-overlay {
-      position: absolute;
-      text-align: center;
-      color: white;
-      z-index: 10;
-    }
+        .intro-text {
+            position: absolute;
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
 
-    .intro-overlay h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      text-shadow: 0 0 30px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
-    }
+        .intro-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
 
-    .intro-overlay p {
-      font-size: 1.2rem;
-      letter-spacing: 0.3em;
-      font-weight: 300;
-    }
+        .intro-text p {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            margin-top: 1rem;
+            font-weight: 300;
+        }
 
-    /* ОСНОВНОЙ САЙТ — СКРЫТ ДО АНИМАЦИИ */
-    .main-site {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+        /* Основной сайт */
+        .main-site {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-    /* НОВЫЙ РОСКОШНЫЙ ДИЗАЙН */
-    .luxury-bg {
-      background: #faf5f0;
-    }
+        /* Анимация появления блоков */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
+        .fade-up {
+            animation: fadeUp 0.8s ease forwards;
+        }
 
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      background: rgba(250, 245, 240, 0.96);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    .nav-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* Шапка */
+        .site-header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 20, 0.92);
+            backdrop-filter: blur(14px);
+            z-index: 100;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-    .logo-lux {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #B83B5E, #F08A5D);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-    .nav-links-lux {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFB6C1, #FF8C9E);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-    .nav-links-lux a {
-      text-decoration: none;
-      color: #2d2d2d;
-      font-weight: 500;
-      transition: 0.2s;
-    }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
 
-    .nav-links-lux a:hover {
-      color: #B83B5E;
-    }
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
 
-    .btn-lux {
-      background: #B83B5E;
-      border: none;
-      padding: 10px 28px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+        .nav-links a:hover {
+            color: #FF9AAE;
+        }
 
-    .btn-lux:hover {
-      background: #9a2e4d;
-      transform: scale(1.02);
-    }
+        .btn-primary {
+            background: #FF8C9E;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #0b0b0f;
+        }
 
-    /* Hero новый */
-    .hero-lux {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      background: linear-gradient(115deg, #faf5f0 60%, #fce9f1);
-    }
+        .btn-primary:hover {
+            background: #ff6b84;
+            transform: scale(1.02);
+        }
 
-    .hero-lux h1 {
-      font-size: 4.8rem;
-      font-family: 'Playfair Display', serif;
-      font-weight: 800;
-      color: #2d2d2d;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
+        .btn-outline-light {
+            background: transparent;
+            border: 1.5px solid #FF8C9E;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #FF8C9E;
+        }
 
-    .hero-lux p {
-      font-size: 1.2rem;
-      color: #5a5a5a;
-      max-width: 500px;
-      margin-bottom: 32px;
-    }
+        .btn-outline-light:hover {
+            background: #FF8C9E;
+            color: #0b0b0f;
+        }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      margin: 80px 0;
-    }
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 20% 30%, #14141c, #0b0b0f);
+            color: white;
+        }
 
-    .card-lux {
-      background: white;
-      border-radius: 32px;
-      padding: 40px 24px;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-    }
+        .hero h1 {
+            font-size: 4.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
 
-    .card-lux:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 35px rgba(184, 59, 94, 0.12);
-    }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 550px;
+            color: #bbb;
+            margin-bottom: 32px;
+        }
 
-    .cta-lux {
-      background: #1f1a1c;
-      border-radius: 48px;
-      padding: 64px 48px;
-      text-align: center;
-      color: white;
-      margin: 80px 0;
-    }
+        /* Направления */
+        .section-title {
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin: 80px 0 48px;
+        }
 
-    footer {
-      text-align: center;
-      padding: 48px 0;
-      border-top: 1px solid #e2d9d2;
-      color: #8a8a8a;
-    }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
 
-    @media (max-width: 768px) {
-      .hero-lux h1 { font-size: 2.8rem; }
-      .nav-links-lux { display: none; }
-    }
-  </style>
+        .card {
+            background: #13131b;
+            border-radius: 28px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: 0.25s ease;
+            border: 1px solid rgba(255, 140, 158, 0.2);
+        }
+
+        .card:hover {
+            border-color: #FF8C9E;
+            transform: translateY(-8px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        /* Преимущества */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FF8C9E;
+        }
+
+        /* CTA */
+        .cta-block {
+            background: linear-gradient(125deg, #FF8C9E, #FFB6C1);
+            border-radius: 48px;
+            padding: 64px 48px;
+            text-align: center;
+            margin: 80px 0;
+            color: #0b0b0f;
+        }
+
+        .cta-block h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-block .btn-dark {
+            background: #0b0b0f;
+            color: white;
+            border: none;
+            padding: 14px 38px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cta-block .btn-dark:hover {
+            background: #2d2d3a;
+            transform: scale(0.98);
+        }
+
+        footer {
+            text-align: center;
+            padding: 48px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; }
+            .section-title { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ЭКРАН-ЗАСТАВКА С ТАНЦЕМ -->
-<div class="intro-screen" id="introScreen">
-  <video class="intro-video" autoplay muted playsinline id="introVideo">
-    <source src="https://cdn.pixabay.com/video/2023/07/14/173592-843481030_large.mp4" type="video/mp4">
-  </video>
-  <div class="intro-overlay">
-    <h1>GHETTO PRINCESS</h1>
-    <p>ТВОЁ ВОЗВРАЩЕНИЕ</p>
-  </div>
+<!-- ИНТРО С ТАНЦЕМ -->
+<div class="intro" id="introScreen">
+    <video class="intro-video" autoplay muted playsinline id="introVideo">
+        <source src="https://cdn.pixabay.com/video/2023/07/14/173592-843481030_large.mp4" type="video/mp4">
+    </video>
+    <div class="intro-text">
+        <h1>GHETTO PRINCESS</h1>
+        <p>ТВОЙ ВЫХОД</p>
+    </div>
 </div>
 
-<!-- ОСНОВНОЙ САЙТ — НОВЫЙ ДИЗАЙН -->
+<!-- ОСНОВНОЙ КОНТЕНТ -->
 <div class="main-site" id="mainSite">
-  <div class="luxury-bg">
     <header class="site-header">
-      <div class="container nav-flex">
-        <div class="logo-lux">GHETTO PRINCESS</div>
-        <ul class="nav-links-lux">
-          <li><a href="#">О нас</a></li>
-          <li><a href="#">Направления</a></li>
-          <li><a href="#">Контакты</a></li>
-        </ul>
-        <button class="btn-lux" id="navBtn">Пробный урок</button>
-      </div>
+        <div class="container nav-flex">
+            <div class="logo">GHETTO PRINCESS</div>
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#directions">Направления</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <button class="btn-primary" id="navBtn">Пробное занятие</button>
+        </div>
     </header>
 
-    <div class="container">
-      <div class="hero-lux">
-        <div>
-          <h1>Движение.<br>Стиль.<br>Свобода.</h1>
-          <p>Мы масштабное женское комьюнити, посвященное танцам, спорту, творчеству, саморазвитию и самопознанию.</p>
-          <button class="btn-lux" id="heroBtn2">Начать танцевать</button>
+    <div class="hero">
+        <div class="container">
+            <h1 class="fade-up">Движение.<br>Стиль.<br>Свобода.</h1>
+            <p class="fade-up" style="animation-delay: 0.1s;">Мы масштабное женское комьюнити, посвященное танцам, спорту, творчеству, саморазвитию и самопознанию.</p>
+            <button class="btn-outline-light" id="heroBtn">Начать движение</button>
         </div>
-      </div>
+    </div>
 
-      <h2 style="font-size: 2.2rem; font-family: 'Playfair Display'; margin-top: 60px; text-align: center;">Направления</h2>
-      <div class="cards-grid">
-        <div class="card-lux"><div style="font-size: 3rem;">👠</div><h3>High Heels</h3><p>Эффектная хореография на каблуках</p></div>
-        <div class="card-lux"><div style="font-size: 3rem;">🎤</div><h3>Авторская хореография</h3><p>Твой уникальный стиль</p></div>
-        <div class="card-lux"><div style="font-size: 3rem;">🕶️</div><h3>Хип-хоп</h3><p>Уличные ритмы и драйв</p></div>
-        <div class="card-lux"><div style="font-size: 3rem;">🧘</div><h3>Фитнес / Йога</h3><p>Гибкость и сила тела</p></div>
-      </div>
+    <div class="container">
+        <div class="stats">
+            <div class="stat-item"><div class="stat-number">20+</div><p>направлений</p></div>
+            <div class="stat-item"><div class="stat-number">👑</div><p>единомышленницы</p></div>
+            <div class="stat-item"><div class="stat-number">🔥</div><p>развитие тела и души</p></div>
+        </div>
 
-      <div class="cta-lux">
-        <h2 style="font-size: 2rem; margin-bottom: 16px;">Начни уже сегодня</h2>
-        <p style="margin-bottom: 28px;">Первое пробное занятие — отличный способ познакомиться со студией</p>
-        <button class="btn-lux" id="ctaLuxBtn">Записаться</button>
-      </div>
+        <h2 class="section-title" id="directions">Коротко о программе</h2>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">👠</div><h3>High Heels</h3><p>Эффектная хореография на каблуках</p></div>
+            <div class="card"><div class="card-icon">🎤</div><h3>Авторская хореография</h3><p>Твой уникальный стиль</p></div>
+            <div class="card"><div class="card-icon">🕶️</div><h3>Хип-хоп</h3><p>Уличные ритмы и драйв</p></div>
+            <div class="card"><div class="card-icon">🧘</div><h3>Фитнес / Йога</h3><p>Гибкость и сила тела</p></div>
+        </div>
+
+        <div class="cta-block">
+            <h2>Начни уже сегодня</h2>
+            <p>Первое пробное занятие — отличный способ познакомиться со студией</p>
+            <button class="btn-dark" id="ctaBtn">Записаться</button>
+        </div>
     </div>
 
     <footer>
-      <div class="container">
-        <p>© 2025 Ghetto Princess — танцевальное комьюнити</p>
-        <p style="margin-top: 8px;">📞 +7 (999) 123-45-67 | ✉️ hello@ghetto-princess.com</p>
-      </div>
+        <div class="container">
+            <p>© 2025 Ghetto Princess — танцевальное комьюнити</p>
+            <p style="margin-top: 8px;">📞 +7 (999) 123-45-67 | ✉️ hello@ghetto-princess.com</p>
+        </div>
     </footer>
-  </div>
 </div>
 
 <script>
-  const intro = document.getElementById('introScreen');
-  const mainSite = document.getElementById('mainSite');
-  const video = document.getElementById('introVideo');
+    // Интро
+    const introDiv = document.getElementById('introScreen');
+    const mainDiv = document.getElementById('mainSite');
 
-  // Через 3.5 секунды или когда видео проиграется — скрываем заставку и показываем сайт
-  setTimeout(() => {
-    intro.style.opacity = '0';
     setTimeout(() => {
-      intro.style.display = 'none';
-      mainSite.style.opacity = '1';
-    }, 1200);
-  }, 3500);
+        introDiv.style.opacity = '0';
+        setTimeout(() => {
+            introDiv.style.display = 'none';
+            mainDiv.style.opacity = '1';
+        }, 1400);
+    }, 3800);
 
-  // кнопки
-  const allBtns = ['navBtn', 'heroBtn2', 'ctaLuxBtn'];
-  allBtns.forEach(id => {
-    const btn = document.getElementById(id);
-    if (btn) btn.addEventListener('click', () => alert('📞 Свяжитесь с нами: +7 (999) 123-45-67 или Telegram @ghetto_princess'));
-  });
+    // Кнопки
+    const buttons = ['navBtn', 'heroBtn', 'ctaBtn'];
+    buttons.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.addEventListener('click', () => alert('📞 Свяжитесь с нами: +7 (999) 123-45-67 или Telegram @ghetto_princess'));
+    });
 </script>
 </body>
 </html>
