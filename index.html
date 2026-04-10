@@ -2,10 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ghetto Princess — танцевальное комьюнити</title>
-  <!-- Google Fonts & Simple CSS Reset -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,25 +14,24 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #0a0a0a;
-      color: #f0f0f0;
+      background: #fff9fb;
+      color: #2d2d2d;
       line-height: 1.5;
-      scroll-behavior: smooth;
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Header / Nav */
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ffe0e7;
       z-index: 100;
       padding: 16px 0;
     }
@@ -43,17 +41,15 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 20px;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: #d46b8a;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFD166, #FF6B6B);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
 
     .nav-links {
@@ -63,99 +59,102 @@
     }
 
     .nav-links a {
-      color: #ddd;
+      color: #4a4a4a;
       text-decoration: none;
       font-weight: 500;
       transition: 0.2s;
     }
 
     .nav-links a:hover {
-      color: #FFD166;
+      color: #d46b8a;
     }
 
     .btn-outline {
       background: transparent;
-      border: 1px solid #FFD166;
-      color: #FFD166;
-      padding: 8px 20px;
+      border: 1.5px solid #d46b8a;
+      color: #d46b8a;
+      padding: 8px 24px;
       border-radius: 40px;
       font-weight: 600;
-      transition: 0.2s;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .btn-outline:hover {
-      background: #FFD166;
-      color: #0a0a0a;
+      background: #d46b8a;
+      color: white;
     }
 
     .btn-primary {
-      background: #FFD166;
+      background: #d46b8a;
       border: none;
-      padding: 12px 28px;
+      padding: 14px 32px;
       border-radius: 40px;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
       transition: 0.2s;
-      color: #0a0a0a;
+      color: white;
     }
 
     .btn-primary:hover {
-      background: #FFB347;
+      background: #b84e6d;
       transform: scale(0.98);
     }
 
-    /* Hero section */
+    /* Hero */
     .hero {
-      padding: 80px 0 100px;
+      padding: 100px 0 80px;
       text-align: center;
+      background: linear-gradient(135deg, #fff0f3 0%, #ffffff 100%);
     }
 
     .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #FFD166, #FF8E8E);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-size: 4rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      color: #d46b8a;
       margin-bottom: 24px;
     }
 
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       max-width: 700px;
       margin: 0 auto 32px;
-      color: #b0b0b0;
+      color: #5a5a5a;
     }
 
-    /* направления */
+    /* Секции */
     .section-title {
       font-size: 2.2rem;
-      font-weight: 700;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
       margin-bottom: 48px;
       text-align: center;
+      color: #d46b8a;
     }
 
     .directions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 30px;
       margin: 40px 0;
     }
 
     .direction-card {
-      background: #111;
-      border-radius: 28px;
+      background: white;
+      border-radius: 24px;
       padding: 32px 24px;
-      transition: 0.25s ease;
-      border: 1px solid rgba(255, 209, 102, 0.2);
       text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: 0.25s;
+      border: 1px solid #ffe0e7;
     }
 
     .direction-card:hover {
-      border-color: #FFD166;
       transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(212, 107, 138, 0.15);
+      border-color: #d46b8a;
     }
 
     .direction-icon {
@@ -164,11 +163,11 @@
     }
 
     .direction-card h3 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       margin-bottom: 12px;
+      color: #d46b8a;
     }
 
-    /* преимущества */
     .features {
       display: flex;
       flex-wrap: wrap;
@@ -184,34 +183,34 @@
 
     .feature .emoji {
       font-size: 2.5rem;
+      margin-bottom: 12px;
     }
 
-    /* CTA */
     .cta-section {
-      background: #111;
+      background: #ffeef2;
       border-radius: 48px;
       padding: 60px 40px;
       text-align: center;
       margin: 80px 0;
     }
 
+    .cta-section h2 {
+      color: #d46b8a;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+    }
+
     footer {
       text-align: center;
       padding: 40px 0;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      color: #777;
+      border-top: 1px solid #ffe0e7;
+      color: #999;
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-      .nav-links {
-        display: none;
-      }
-      .container {
-        padding: 0 20px;
-      }
+      .hero h1 { font-size: 2.5rem; }
+      .nav-links { display: none; }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -231,13 +230,15 @@
 </header>
 
 <main>
-  <div class="container">
-    <section class="hero">
+  <section class="hero">
+    <div class="container">
       <h1>GHETTO PRINCESS</h1>
       <p>Мы масштабное женское комьюнити, посвященное танцам, спорту, творчеству, саморазвитию и самопознанию.</p>
       <button class="btn-primary" id="heroBtn">Записаться на пробное</button>
-    </section>
+    </div>
+  </section>
 
+  <div class="container">
     <section id="about">
       <div class="features">
         <div class="feature"><div class="emoji">💃</div><h3>20+ направлений</h3><p>High Heels, хип‑хоп, хореография, фитнес, йога и другие</p></div>
